@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import _ from "lodash";
 import "./style.css";
-
 import SearchIcon from "../../assets/icons/search.svg";
-
+import useDebounce from "../../hooks/useDebounce.js";
 import Spinner from "../Spinner";
 
 function CategoryFilter(props) {
@@ -13,11 +11,15 @@ function CategoryFilter(props) {
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
 
+  // Hook based debounce
+  const debouncedSearchTerm = useDebounce(search, 500);
+
   // Hook that handles our filtering from all sources
   useEffect(() => {
     const filteredCategories = data.filter(category => {
       return (
-        category.indexOf(search) !== -1 && !selected.find(s => s === category)
+        category.indexOf(debouncedSearchTerm) !== -1 &&
+        !selected.find(s => s === category)
       );
     });
 
@@ -25,13 +27,7 @@ function CategoryFilter(props) {
 
     setCategories(sortedCategories);
     setIsLoadingSearch(false);
-  }, [search, selected, data]);
-
-  // Half a second debounce, curtosey of lodash, normally I would implement my own
-  const handleChange = search => {
-    setIsLoadingSearch(true);
-    setSearch(search);
-  };
+  }, [debouncedSearchTerm, selected, data]);
 
   // Handling Box change
   const handleCheckboxChange = item => {
@@ -51,7 +47,8 @@ function CategoryFilter(props) {
         <input
           className="CategoryFilter__search"
           onChange={e => {
-            handleChange(e.target.value);
+            setIsLoadingSearch(true);
+            setSearch(e.target.value);
           }}
           placeholder="Zoek op ..."
         />
