@@ -13,7 +13,6 @@ function App() {
       const result = await axios(
         "https://raw.githubusercontent.com/hvgeertruy/frontend-exercise/master/assets/items.json"
       );
-      //Unsure why we are storing entities in our json, not comfortable setting dangerous html, nor am I comfortable with this
       const unEncodedData = result.data.data.map(item => {
         const elment = document.createElement("p");
         // warning, will probably execute scripts
