@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import axios from "axios";
+
+import CategoryFilter from "./components/CategoryFilter";
 
 function App() {
+  const [data, setData] = useState({ hits: [] });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        "https://raw.githubusercontent.com/hvgeertruy/frontend-exercise/master/assets/items.json"
+      );
+      //Unsure why we are storing entities in our json, not comfortable setting dangerous html, lodash it is.
+      const unEncodedData = result.data.data.map(item => {
+        const elment = document.createElement("p");
+        // warning, will probably execute scripts
+        elment.innerHTML = item;
+        return elment.textContent;
+      });
+
+      setData(unEncodedData);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isLoading ? "Loading..." : <CategoryFilter data={data} />}
     </div>
   );
 }
