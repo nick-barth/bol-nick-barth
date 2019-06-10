@@ -96,7 +96,7 @@ function CategoryFilter(props) {
       </div>
       <button
         className="CategoryFilter__apply"
-        onClick={() => console.log("wow")}
+        onClick={() => console.log("Apply this thing!")}
       >
         Toessen
       </button>
