@@ -28,9 +28,10 @@ function CategoryFilter(props) {
   }, [search, selected, data]);
 
   // Half a second debounce, curtosey of lodash, normally I would implement my own
-  const handleChange = _.debounce(search => {
+  const handleChange = search => {
+    setIsLoadingSearch(true);
     setSearch(search);
-  }, 500);
+  };
 
   // Handling Box change
   const handleCheckboxChange = item => {
@@ -50,7 +51,6 @@ function CategoryFilter(props) {
         <input
           className="CategoryFilter__search"
           onChange={e => {
-            setIsLoadingSearch(true);
             handleChange(e.target.value);
           }}
           placeholder="Zoek op ..."
