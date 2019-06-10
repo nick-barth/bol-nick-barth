@@ -5,7 +5,7 @@ import axios from "axios";
 import CategoryFilter from "./components/CategoryFilter";
 
 function App() {
-  const [data, setData] = useState({ hits: [] });
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function App() {
       const result = await axios(
         "https://raw.githubusercontent.com/hvgeertruy/frontend-exercise/master/assets/items.json"
       );
-      //Unsure why we are storing entities in our json, not comfortable setting dangerous html, lodash it is.
+      //Unsure why we are storing entities in our json, not comfortable setting dangerous html, nor am I comfortable with this
       const unEncodedData = result.data.data.map(item => {
         const elment = document.createElement("p");
         // warning, will probably execute scripts
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      {isLoading ? "Loading..." : <CategoryFilter data={data} />}
+      {<CategoryFilter data={data} isLoading={isLoading} />}
     </div>
   );
 }

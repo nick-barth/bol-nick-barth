@@ -1,0 +1,31 @@
+.Spinner {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 2px solid #3366cd;
+  border-color: #3366cd #3366cd #3366cd transparent;
+  animation: infinite linear 0.75s rotation;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.Spinner--large {
+  width: 30px;
+  height: 30px;
+}
+
+.Spinner--small {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes rotation {
+  from {
+    transform: translateY(-50%) translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateY(-50%) translateX(-50%) rotate(360deg);
+  }
+}

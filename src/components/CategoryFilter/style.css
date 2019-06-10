@@ -1,0 +1,122 @@
+.CategoryFilter {
+  border: 1px solid #d2d1cf;
+  background: #f8f8f8;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 300px;
+}
+
+.CategoryFilter__header {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.CategoryFilter__search-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.CategoryFilter__search {
+  width: 100%;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #d2d1cf;
+  transition: all ease-in-out 250ms;
+}
+
+.CategoryFilter__input-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+}
+
+.CategoryFilter__search:focus {
+  border: 1px solid #3366cd;
+  transition: all ease-in-out 250ms;
+  outline: none;
+}
+
+.CategoryFilter__item-container {
+  max-height: 300px;
+  min-height: 300px;
+  overflow: scroll;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.CategoryFilter__item {
+  margin: 10px 0;
+}
+
+.CategroyFilter__item--selected {
+  color: #3366cd;
+}
+
+.CategoryFilter__input {
+  top: -9999px;
+  z-index: -9999;
+  position: absolute;
+}
+
+.CategoryFilter__label {
+  position: relative;
+}
+
+.CategoryFilter__input:checked + .CategoryFilter__label,
+.CategoryFilter__input:not(:checked) + .CategoryFilter__label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+}
+
+.CategoryFilter__input:checked + .CategoryFilter__label:before,
+.CategoryFilter__input:not(:checked) + .CategoryFilter__label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #d2d1cf;
+  background: #fff;
+}
+
+.CategoryFilter__input:checked + .CategoryFilter__label:after,
+.CategoryFilter__input:not(:checked) + .CategoryFilter__label:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #3366cd;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: all 0.2s ease;
+}
+
+.CategoryFilter__input:not(:checked) + .CategoryFilter__label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+.CategoryFilter__input:checked + .CategoryFilter__label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.CategoryFilter__apply {
+  width: 100%;
+  padding: 10px;
+  background: #3366cd;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all ease-in-out 250ms;
+}
+
+.CategoryFilter__apply:hover {
+  background: #0044cb;
+}
