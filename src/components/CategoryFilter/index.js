@@ -19,7 +19,7 @@ function CategoryFilter(props) {
     const filteredCategories = data.filter(category => {
       return (
         category.indexOf(debouncedSearchTerm) !== -1 &&
-        !selected.find(s => s === category)
+        !selected.includes(category)
       );
     });
 
@@ -32,10 +32,10 @@ function CategoryFilter(props) {
   // Handling Box change
   const handleCheckboxChange = item => {
     return () => {
-      if (selected.find(s => s === item)) {
+      if (selected.includes(item)) {
         setSelected(selected.filter(s => s !== item));
       } else {
-        setSelected([].concat(item, selected));
+        setSelected([item, ...selected]);
       }
     };
   };
