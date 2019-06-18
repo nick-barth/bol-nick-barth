@@ -95,7 +95,7 @@ function CategoryFilter(props) {
         className="CategoryFilter__apply"
         onClick={() => console.log("Apply this thing!")}
       >
-        Toessen
+        Toepassen
       </button>
     </div>
   );
