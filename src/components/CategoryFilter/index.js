@@ -18,8 +18,8 @@ function CategoryFilter(props) {
   useEffect(() => {
     const filteredCategories = data.filter(category => {
       return (
-        category.indexOf(debouncedSearchTerm) !== -1 &&
-        !selected.includes(category)
+        category.toLowerCase().indexOf(debouncedSearchTerm.toLowerCase()) !==
+          -1 && !selected.includes(category)
       );
     });
 
